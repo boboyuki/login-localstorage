@@ -8,6 +8,7 @@
 
 body {
     height: 100vh;
+    
     background-image: linear-gradient(to right bottom,rgba(181, 243, 243, 0.7),rgba(32, 221, 221, 0.7));
 }
 
@@ -17,7 +18,7 @@ body {
     border: none;
     border-radius: 10px;
     position: absolute;
-    width: 50%;
+    width: 80%;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -28,14 +29,13 @@ body {
 
 .title {
     text-align: center;
-    
     position: relative;
     width: 100%;
     padding-bottom: 2rem;
 }
 
 .heading {
-    font-size: 5rem;
+    font-size: 4rem;
     text-transform: uppercase ;
     letter-spacing: 1rem;
     padding-bottom: 2rem;
@@ -43,7 +43,7 @@ body {
 }
 
 .heading-2 {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     text-transform: uppercase ;
     letter-spacing: 0.8rem;
     padding-bottom: 2rem;
@@ -102,11 +102,15 @@ body {
 }
 
 .register {
+    float: left;
+    width: 50%;
     text-align: center;
     margin: auto;
 }
 
 .login {
+    float: right;
+    width:50%;
     text-align: center;
     margin: auto;
 }
