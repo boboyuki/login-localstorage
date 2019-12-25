@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,31 +8,95 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="container">
         <div class="title">
             <h4 class="heading"> practice </h4>
             <hr>
         </div>
-        <form class="register">
+        <form class="register" method="POST">
             <h4 class="heading-2"> sign up </h4>
             <hr class="divide">
-            <label for="new-account" class="text" >Email</label>
+            <label for="new-account" class="text">Email</label>
             <input type="email" class="input" name="newaccount" placeholder="abc@mail.com" id="new-account" required>
-            <label for="new-password" class="text" >Password</label>
+            <label for="new-password" class="text">Password</label>
             <input type="password" class="input" name="newpassword" placeholder="********" id="new-password" required>
             <input type="submit" class="btn" value="Sign Up">
         </form>
-        <form class="login">
+        <form class="login" method="POST">
             <h4 class="heading"> log in </h4>
             <hr class="divide">
-            <label for="account" class="text" >Email</label>
+            <label for="account" class="text">Email</label>
             <input type="email" class="input" name="account" placeholder="abc@mail.com" id="account" required>
-            <label for="password" class="text" >Password</label>
+            <label for="password" class="text">Password</label>
             <input type="password" class="input" name="account" placeholder="********" id="password" required>
             <input type="submit" class="btn" value="Log In">
         </form>
     </div>
-    
+    <script>
+        let addUser = document.querySelector(".register");
+        let login = document.querySelector(".login");
+        const items = JSON.parse(localStorage.getItem('items')) || [];
+
+        console.log(items);
+        items.forEach((item) => {
+            console.log(item.newAccount);
+        })
+
+
+
+        function addAccount(e) {
+            e.preventDefault();
+            let newAccount = this.querySelector('[name= "newaccount"]').value;
+            let newPassword = this.querySelector('[name= "newpassword"]').value;
+            for(i=0; i<items.length ;i++) {
+                if (newAccount == items[i].newAccount) {
+                    return alert('已有此帳戶');
+                } 
+            }
+            let content = {
+                newAccount,
+                newPassword
+            };
+            items.push(content);
+            localStorage.setItem('items', JSON.stringify(items));
+            this.reset();
+        }
+
+        function checkAccount(e) {
+            e.preventDefault();
+            let userAccount = this.querySelector("#account").value;
+            let userPassword = this.querySelector("#password").value;
+            let logIn = {
+                userAccount,
+                userPassword
+            };
+
+            // items.map(item => {
+            //     if (logIn.userAccount == item.newAccount && logIn.userPassword == item.newPassword) {
+            //         alert('成功');
+            //         return
+            //     } else if (logIn.userAccount == item.newAccount && logIn.userPassword != item.newPassword) {
+            //         alert('密碼錯誤');
+            //         return
+            //     } 
+            // });
+
+            for(i=0; i<items.length ;i++) {
+                if (logIn.userAccount == items[i].newAccount && logIn.userPassword == items[i].newPassword) {
+                     return alert('成功');
+                     
+                } else if (logIn.userAccount == items[i].newAccount && logIn.userPassword != items[i].newPassword) {
+                     return alert('密碼錯誤');
+                } 
+            }
+            
+            alert('未有此帳戶')
+        }
+        addUser.addEventListener("submit", addAccount);
+        login.addEventListener("submit", checkAccount);
+    </script>
 </body>
+
 </html>
