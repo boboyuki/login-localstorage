@@ -39,13 +39,6 @@
         let login = document.querySelector(".login");
         const items = JSON.parse(localStorage.getItem('items')) || [];
 
-        console.log(items);
-        items.forEach((item) => {
-            console.log(item.newAccount);
-        })
-
-
-
         function addAccount(e) {
             e.preventDefault();
             let newAccount = this.querySelector('[name= "newaccount"]').value;
